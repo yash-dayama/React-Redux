@@ -1,15 +1,17 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async (obj, thunkAPI) => {
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async (obj, {rejectWithValue, fulfillWithValue}) => {
     // console.log(thunkAPI.getState())
     // thunkAPI.dispatch(testAsyncDispatch())
     try {
         const res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
 
-        return res.data;
+        // return res.data;
+        return fulfillWithValue("something else");
     } catch (err) {
-        return err;
+        return rejectWithValue("Oops, try again");
+        // return err;
     }
 });
 
