@@ -7,11 +7,11 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async (obj, {reje
     try {
         const res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
 
-        // return res.data;
-        return fulfillWithValue("something else");
+        return res.data;
+        // return fulfillWithValue("something else");
     } catch (err) {
-        return rejectWithValue("Oops, try again");
-        // return err;
+        // return rejectWithValue("Oops, try again");
+        return err;
     }
 });
 
